@@ -1,15 +1,45 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <h1>Admin users create page</h1>
-    </body>
-</html>
+@extends('layouts.admin')
+
+@section('content')
+    <h1>Create Users</h1>
+    
+    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
+        
+    <div class="form-group">
+        {!!Form::label('name', 'Name:')!!}
+        {!!Form::text('name', null, ['class'=>'form-control'])!!}
+    </div>
+    
+    <div class="form-group">
+        {!! Form::label('email', 'Email:') !!}
+        {!! Form::email('email', null, ['class'=>'form-control']) !!}
+    </div>
+    
+    <div class="form-group">
+        {!! Form::label('role_id', 'Role:') !!}
+        {!! Form::select('role_id', [''=>'Choose Options'] + $roles, null, ['class'=>'form-control']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('is_active', 'Status:') !!}
+        {!! Form::select('is_active', [1=>'Active', 0=>'Not Active'], 0, ['class'=>'form-control']) !!}
+    </div>
+    
+    <div class="form-group">
+        {!! Form::label('password', 'Password') !!}
+        {!! Form::password('password', ['class'=>'form-control']) !!}
+    </div>
+    
+    <div class="form-group">
+        {!! Form::label('file', 'File') !!}
+        {!! Form::file('file', null, ['class'=>'form-control']) !!}
+    </div>
+    
+    <div class="form-group">
+        {!!Form::submit('Create User', ['class'=>'btn btn-primary'])!!}
+    </div>
+    
+    {!! Form::close() !!}
+    
+    @include('includes.form_error')
+@stop
