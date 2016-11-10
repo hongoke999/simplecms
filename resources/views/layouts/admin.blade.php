@@ -129,7 +129,6 @@
                             <li>
                                 <a href="{{route('admin.users.create')}}">Create User</a>
                             </li>
-
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
